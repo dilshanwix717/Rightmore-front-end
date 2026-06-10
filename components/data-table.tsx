@@ -19,14 +19,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  ChevronLeft,
-  ChevronRight,
-  Eye,
-  Edit2,
-  Trash2,
-  Power,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, Eye } from "lucide-react";
 
 interface Column {
   key: string;
@@ -54,9 +47,6 @@ export function DataTable({
   columns,
   data,
   onView,
-  onEdit,
-  onDelete,
-  onToggleStatus,
   searchKey = "name",
   isLoading = false,
   currentPage = 1,
@@ -117,7 +107,6 @@ export function DataTable({
                   {column.label}
                 </TableHead>
               ))}
-              <TableHead className="font-semibold">Actions</TableHead>
             </TableRow>
           </TableHeader>
 
@@ -176,51 +165,6 @@ export function DataTable({
                           <span className="hidden sm:inline">View</span>
                         </Button>
                       )}
-
-                      {onEdit && (
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => onEdit(row)}
-                          className="gap-1"
-                          title="Edit"
-                        >
-                          <Edit2 className="h-4 w-4" />
-                          <span className="hidden sm:inline">Edit</span>
-                        </Button>
-                      )}
-
-                      {onToggleStatus && (
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => onToggleStatus(row)}
-                          className={`gap-1 ${
-                            row.isActive
-                              ? "text-red-600 hover:text-red-700 hover:bg-red-50"
-                              : "text-green-600 hover:text-green-700 hover:bg-green-50"
-                          }`}
-                          title={row.isActive ? "Deactivate" : "Activate"}
-                        >
-                          <Power className="h-4 w-4" />
-                          <span className="hidden sm:inline">
-                            {/* {row.isActive ? "Deactivate" : "Activate"} */}
-                          </span>
-                        </Button>
-                      )}
-
-                      {onDelete && (
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => onDelete(row)}
-                          className="gap-1 text-destructive hover:text-destructive"
-                          title="Delete"
-                        >
-                          <Trash2 className="h-4 w-4" />
-                          <span className="hidden sm:inline">Delete</span>
-                        </Button>
-                      )}
                     </div>
                   </TableCell>
                 </TableRow>
@@ -256,7 +200,7 @@ export function DataTable({
                   >
                     {page}
                   </Button>
-                )
+                ),
               )}
             </div>
             <Button
